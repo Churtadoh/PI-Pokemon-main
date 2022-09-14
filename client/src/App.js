@@ -4,8 +4,9 @@ import Land from "./components/Land"
 import Nav from "./components/Nav"
 import Home from "./components/Home"
 import CreatePokemon from './components/CreatePokemon';
+import PokemonDetail from './components/PokemonDetail';
 
-var nav = false
+var nav = true
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <Route exact path = '/' component = {()=>(<Land/>)}/>
       {nav && <Nav/>}
       <Route exact path = '/home' component = {()=>(<Home/>)}/>
-      <Route exact path = '/pokemon/create' component = {()=>(<CreatePokemon/>)}/>
+      <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
+      <Route exact path = {'/pokemon/:id' || '/pokemon/:name'} component = {() => <PokemonDetail/>}/>
       </>
       
     </div>

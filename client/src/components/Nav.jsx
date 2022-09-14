@@ -1,7 +1,13 @@
+import {Link} from 'react-router-dom'
 
 const Nav = (props) =>{
 return(
-    <h1>Navigation bar</h1> 
+    <div>
+        <Link to = '/home'>Home</Link>
+        <Link to = '/pokemon-create'>Create Pokemon</Link>
+        <input placeholder='Search for pokemon by name or id'/>
+        <button>Search</button>
+    </div> 
 )
 
 }
