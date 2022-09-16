@@ -23,7 +23,6 @@ const Home = (props) =>{
 }
 
 export const mapStateToProps = (state) => {
-    console.log(state)
     return {
         allPokemon: state.allPokemon
     }

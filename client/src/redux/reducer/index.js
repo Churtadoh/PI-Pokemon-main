@@ -20,7 +20,7 @@ const rootReducer = (state = initialState , action) => {
         case CREATE_POKEMON:
             return{
                 ...state,
-                allPokemon: state.houses.concat(action.payload)
+                allPokemon: state.allPokemon.concat(action.payload)
             }
         default:
             return state    
