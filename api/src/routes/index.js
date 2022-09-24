@@ -12,11 +12,18 @@ const router = Router();
 module.exports = router;
 
 const {
-    getAllPokemon
+    getAllPokemon,
+    getPokemonId
 } = models
 
 router
 
-.get('/home',(req,res)=>{
+.get('/home', (req,res)=>{
     res.status(200).json(getAllPokemon())
+})
+
+.get('/pokemon/:id',async (req,res)=>{
+    const {id} = req.params
+    const a = await getPokemonId(id)
+    res.status(200).json(a)
 })
