@@ -1,6 +1,15 @@
-const PokemonDetail = (props) =>{
+import { useSelector } from "react-redux"
+
+
+const PokemonDetail = ({match}) =>{
+    const pokemon = useSelector(state => state.pokemon)
+
     return(
-        <h1>Pokemon Detail</h1> 
+        <div>
+        <h1>Name: {pokemon.name} </h1> 
+        <img alt=''/>
+        </div>
     )
-    }
+}
+
     export default PokemonDetail

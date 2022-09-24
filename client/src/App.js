@@ -14,10 +14,10 @@ function App() {
     <div className="App">
       <>
       <Route exact path = '/' component = {()=>(<Land/>)}/>
-      {nav && <Nav/>}
+      {nav && <Nav onSearch={(input) => alert(input)}/>}
       <Route exact path = '/home' component = {()=>(<Home/>)}/>
       <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
-      <Route exact path = {'/pokemon/:id' || '/pokemon/:name'} component = {() => <PokemonDetail/>}/>
+      <Route exact path = {'/pokemon/:id'} component = {() => <PokemonDetail/>}/>
       </>
       
     </div>

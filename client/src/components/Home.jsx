@@ -6,7 +6,7 @@ const Home = (props) =>{
 
     useEffect(()=> {
         props.getAllPokemon()
-    },[])
+    })
 
     return(
         <div>
@@ -14,7 +14,9 @@ const Home = (props) =>{
         <h3>Pokemon</h3>
         {props.allPokemon && props.allPokemon.map(el =>{
             return(<div>
+                id: {el.id}
                 name: {el.name}
+                
                 
                 </div>)
         })}
