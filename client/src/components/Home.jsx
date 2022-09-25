@@ -1,28 +1,48 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import { getAllPokemon } from '../redux/actions'
-import Pokemon from './Pokemon'
+import { useState } from 'react'
 
 const Home = (props) =>{
 
-    useEffect(()=> {
-        props.getAllPokemon()
-    },[])
+    const arrayPokemon = props.arrayPokemon
+
+    const itemsPage = 12
+
+    const[items , setItems] = useState([...arrayPokemon].splice(0,itemsPage))
+
+    const[currentPage, setCurrentPage] = useState(1)
+
+    const nextHandler = () => {
+        const totalElementos = props.allPokemon.length
+        const nextPage = currentPage + 1
+        const firstIndex = (nextPage-1) * itemsPage
+
+        if(totalElementos/(nextPage-1) <= itemsPage) {return;}
+        else {
+            setItems([...arrayPokemon].splice(firstIndex,itemsPage))
+            setCurrentPage(nextPage)
+        } 
+    }
+  
+    const prevHandler = () => {
+        const prevPage = currentPage - 1
+        if(prevPage<1) {return}
+
+        const firstIndex = (prevPage-1) * itemsPage
+
+        setItems([...arrayPokemon].splice(firstIndex,itemsPage))
+        setCurrentPage(prevPage)
+    }
 
     return(
         <div>
-        <h1>Home</h1> 
-        <h3>Pokemon</h3>
-        {props.allPokemon && props.allPokemon.map(el =>{
-            return(<div key={el.id}>
-                <Pokemon
-                id = {el.id}
-                name = {el.name}
-                types = {el.types}
-                img = {el.img}
-                />
-                </div>)
-        })}
+           <h1>Home</h1> 
+           <h2>Pokemon</h2>
+           <h3>Pagina: {currentPage}</h3>
+           <button onClick={prevHandler}>Prev</button>
+           <button onClick={nextHandler}>Next</button>
+           {items}
         </div>
     )
 }

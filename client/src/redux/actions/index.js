@@ -14,7 +14,7 @@ export const getAllPokemon = () => dispatch => {
 }
 
 export const getPokemon = (id) => dispatch => {
-    return fetch("https://pokeapi.co/api/v2/pokemon/" + id)
+    return fetch("http://localhost:3001/pokemon/" + id)
           .then(response => response.json())
           .then(obj => {
             dispatch({ type: GET_POKEMON, payload: obj });
