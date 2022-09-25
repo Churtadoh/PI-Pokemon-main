@@ -6,7 +6,7 @@ const PokemonDetail = ({match}) =>{
 
     return(
         <div>
-        <h1>Name: {pokemon.name} </h1> 
+        <h1>Name: {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} </h1> 
         <img alt=''/>
         </div>
     )

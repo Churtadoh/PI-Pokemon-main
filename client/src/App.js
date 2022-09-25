@@ -5,11 +5,11 @@ import Nav from "./components/Nav"
 import Home from "./components/Home"
 import CreatePokemon from './components/CreatePokemon';
 import PokemonDetail from './components/PokemonDetail';
-
-var nav = true
-
+import { useSelector } from "react-redux"
 
 function App() {
+  const nav = useSelector(state => state.nav)
+
   return (
     <div className="App">
       <>

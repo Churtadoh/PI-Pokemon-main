@@ -1,8 +1,9 @@
-import { GET_ALL_POKEMON , GET_POKEMON, CREATE_POKEMON } from "../actions";
+import { GET_ALL_POKEMON , GET_POKEMON, CREATE_POKEMON, INITIATE_PAGE } from "../actions";
 
 const initialState = {
     allPokemon: [],
-    pokemon: {}
+    pokemon: {},
+    nav: false
 }
 
 const rootReducer = (state = initialState , action) => {
@@ -21,6 +22,11 @@ const rootReducer = (state = initialState , action) => {
             return{
                 ...state,
                 allPokemon: state.allPokemon.concat(action.payload)
+            }
+        case INITIATE_PAGE:
+            return{
+                ...state,
+                nav : action.payload
             }
         default:
             return state    

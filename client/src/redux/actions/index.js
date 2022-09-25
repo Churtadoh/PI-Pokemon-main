@@ -1,6 +1,7 @@
 export const GET_ALL_POKEMON = "GET_ALL_POKEMON"
 export const GET_POKEMON = "GET_POKEMON"
 export const CREATE_POKEMON = "CREATE_POKEMON"
+export const INITIATE_PAGE = "INITIATE_PAGE"
 
 var id=3
 
@@ -26,5 +27,12 @@ export const createPokemon = (payload) => {
     type: CREATE_POKEMON,
     payload: {...payload, id:id}
   }
+}
 
+export const initiatePage = () => {
+  var a = true
+  return{
+    type: INITIATE_PAGE,
+    payload: a
+  }
 }
