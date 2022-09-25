@@ -7,11 +7,17 @@ let pokemonsApi = []
 let urls = []
 let pokemons = []
 
-async function api() {await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40')
+async function api() {await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=10')
 .then(res => {pokemonsApi = res.data.results})}
 
 async function pokeDetail(param) {
-    await axios.get('https://pokeapi.co/api/v2/pokemon/'+ param )  
+    const poke = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ param )
+    return {
+      name: poke.data.name.charAt(0).toUpperCase() + poke.data.name.slice(1),
+      id: poke.data.id,
+      types: poke.data.types,
+      img: poke.data.sprites.other.dream_world.front_default      
+    }   
 }
 
 const url= () => {

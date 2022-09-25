@@ -27,3 +27,8 @@ router
     const a = await getPokemonId(id)
     res.status(200).json(a)
 })
+
+.get('/pokemon', async (req,res)=>{
+    const name = req.query.name
+    res.status(200)
+})
