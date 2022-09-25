@@ -6,14 +6,12 @@ const Promise = require('bluebird')
 let pokemonsApi = []
 let urls = []
 let pokemons = []
-let pokemon = 0
 
 async function api() {await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40')
 .then(res => {pokemonsApi = res.data.results})}
 
 async function pokeDetail(param) {
-    const poke = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ param )
-    return poke.data   
+    await axios.get('https://pokeapi.co/api/v2/pokemon/'+ param )  
 }
 
 const url= () => {
