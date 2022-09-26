@@ -36,6 +36,7 @@ const arrayPokemon = props.allPokemon.map(el =>{
       <Route exact path = '/home' component = {()=>(<Home arrayPokemon={arrayPokemon}/>)}/>
       <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
       <Route exact path = {'/pokemon/:id'} component = {() => <PokemonDetail/>}/>
+      <Route exact path = '/pokemon' component={() => <PokemonDetail/>}/>
       </>
       
     </div>

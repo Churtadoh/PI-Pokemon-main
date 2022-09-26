@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import {useEffect} from 'react';
-import { getPokemon } from '../redux/actions';
+import { getPokemonQuery } from '../redux/actions';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -19,7 +19,7 @@ const handleInputChange = (e) =>{
     setInput(e.target.value)
 }
 
-useEffect(()=>{if(inputSearch!==''){dispatch(getPokemon(inputSearch))}
+useEffect(()=>{if(inputSearch!==''){dispatch(getPokemonQuery(inputSearch))}
 },[inputSearch,dispatch])
 
 return(
@@ -27,7 +27,7 @@ return(
         <Link to = '/home'>Home</Link>
         <Link to = '/pokemon-create'>Create Pokemon</Link>
         <input id='input' value={input} onChange= {handleInputChange} placeholder='Search for pokemon by name or id'/>
-        <Link to = {`/pokemon/${input}`}><button type='submit' onClick= {handleInputSearch}>Search</button></Link>
+        <Link to = {`/pokemon?name=${input}`}><button type='submit' onClick= {handleInputSearch}>Search</button></Link>
     </div> 
 )
 }

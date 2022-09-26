@@ -1,4 +1,4 @@
-import { GET_ALL_POKEMON , GET_POKEMON, CREATE_POKEMON, INITIATE_PAGE } from "../actions";
+import { GET_ALL_POKEMON , GET_POKEMON, GET_POKEMON_QUERY, CREATE_POKEMON, INITIATE_PAGE } from "../actions";
 
 const initialState = {
     allPokemon: [],
@@ -14,6 +14,11 @@ const rootReducer = (state = initialState , action) => {
                 allPokemon: action.payload
             }
         case GET_POKEMON:
+            return{
+                ...state,
+                pokemon: action.payload
+            }
+        case GET_POKEMON_QUERY:
             return{
                 ...state,
                 pokemon: action.payload
