@@ -7,8 +7,15 @@ let pokemonsApi = []
 let urls = []
 let pokemons = []
 
-async function api() {await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=10')
-.then(res => {pokemonsApi = res.data.results})}
+async function apiTypes() {
+      const types = await axios.get('https://pokeapi.co/api/v2/type')
+      return types.data.results
+}
+
+async function api() {
+      await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
+      .then(res => {pokemonsApi = res.data.results})
+}
 
 async function pokeDetail(param) {
     const poke = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ param )
@@ -16,7 +23,13 @@ async function pokeDetail(param) {
       name: poke.data.name.charAt(0).toUpperCase() + poke.data.name.slice(1),
       id: poke.data.id,
       types: poke.data.types,
-      img: poke.data.sprites.other.dream_world.front_default      
+      img: poke.data.sprites.other.dream_world.front_default,
+      height: poke.data.height,
+      weight: poke.data.weight,
+      hp: poke.data.stats[0].base_stat,
+      attack: poke.data.stats[1].base_stat,
+      defense: poke.data.stats[2].base_stat,
+      speed: poke.data.stats[5].base_stat    
     }   
 }
 
@@ -39,7 +52,8 @@ const fetchData = (URL) => {
           id: response.data.id,
           name: response.data.name,
           types: response.data.types,
-          img: response.data.sprites.front_default
+          img: response.data.sprites.front_default,
+          attack: response.data.stats[1].base_stat
         };
       })
       .catch(function(error) {
@@ -67,10 +81,20 @@ const getPokemonId = (param) =>{
       return pokeDetail(param)
 }
 
+const getPokemonQuery = (query) => {
+      return pokeDetail(query)
+}
+
+const getTypes = () => {
+      return apiTypes() 
+}
+
 
 module.exports = {
     getAllPokemon,
-    getPokemonId
+    getPokemonId,
+    getPokemonQuery,
+    getTypes
 }
 
 

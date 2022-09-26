@@ -22,12 +22,19 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    hp: {
+      type: DataTypes.INTEGER
+    },
+    attack: {
+      type: DataTypes.INTEGER
+    },
+    defense: {
+      type: DataTypes.INTEGER
+    },
+    speed: {
+      type: DataTypes.INTEGER,
+    },
   },{timestamps: false});
-
-  sequelize.define('type',{
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },{timestamps: false})
 };
+
+
