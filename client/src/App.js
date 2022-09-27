@@ -15,9 +15,9 @@ function App(props) {
 
   useEffect(()=> {
     props.getAllPokemon()
-},[])
+  },[])
 
-const arrayPokemon = props.allPokemon.map(el =>{
+  const arrayPokemon = props.allPokemon.map(el =>{
     return(<div key={el.id}>
         <Pokemon
         id = {el.id}
@@ -26,7 +26,7 @@ const arrayPokemon = props.allPokemon.map(el =>{
         img = {el.img}
         />
         </div>)
-})
+  })
 
   return (
     <div className="App">

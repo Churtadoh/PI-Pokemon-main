@@ -1,10 +1,8 @@
 export const GET_ALL_POKEMON = "GET_ALL_POKEMON"
 export const GET_POKEMON = "GET_POKEMON"
 export const GET_POKEMON_QUERY = "GET_POKEMON_QUERY"
-export const CREATE_POKEMON = "CREATE_POKEMON"
 export const INITIATE_PAGE = "INITIATE_PAGE"
-
-var id=3
+export const GET_TYPES = "GET_TYPES"
 
 export const getAllPokemon = () => dispatch => {
     return fetch('http://localhost:3001/home')
@@ -12,6 +10,14 @@ export const getAllPokemon = () => dispatch => {
            .then(obj => {
             dispatch({type: GET_ALL_POKEMON , payload: obj})
            })
+}
+
+export const getTypes = () => dispatch => {
+  return fetch('http://localhost:3001/types')
+         .then(response => response.json())
+         .then(obj => {
+          dispatch({type: GET_TYPES , payload: obj})
+         })
 }
 
 export const getPokemon = (id) => dispatch => {
@@ -28,14 +34,6 @@ export const getPokemonQuery = (name) => dispatch => {
           .then(obj => {
             dispatch({ type: GET_POKEMON, payload: obj });
           });
-}
-
-export const createPokemon = (payload) => {
-  id = id + 1
-  return{
-    type: CREATE_POKEMON,
-    payload: {...payload, id:id}
-  }
 }
 
 export const initiatePage = () => {

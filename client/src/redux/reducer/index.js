@@ -1,9 +1,10 @@
-import { GET_ALL_POKEMON , GET_POKEMON, GET_POKEMON_QUERY, CREATE_POKEMON, INITIATE_PAGE } from "../actions";
+import { GET_ALL_POKEMON , GET_POKEMON, GET_POKEMON_QUERY, INITIATE_PAGE, GET_TYPES } from "../actions";
 
 const initialState = {
     allPokemon: [],
     pokemon: {},
-    nav: false
+    nav: false,
+    types: []
 }
 
 const rootReducer = (state = initialState , action) => {
@@ -23,10 +24,10 @@ const rootReducer = (state = initialState , action) => {
                 ...state,
                 pokemon: action.payload
             }
-        case CREATE_POKEMON:
+        case GET_TYPES:
             return{
                 ...state,
-                allPokemon: state.allPokemon.concat(action.payload)
+                types: action.payload
             }
         case INITIATE_PAGE:
             return{
