@@ -2,19 +2,29 @@
 
 const axios = require('axios')
 const Promise = require('bluebird')
+const { Pokemon, Type } = require('../db');
 
 let pokemonsApi = []
 let urls = []
 let pokemons = []
 
 async function apiTypes() {
-      const types = await axios.get('https://pokeapi.co/api/v2/type')
-      return types.data.results
+      const api = await axios.get('https://pokeapi.co/api/v2/type')
+      const types = api.data.results
+      await types.map(el => Type.create({name: el.name}))
+}
+
+apiTypes();
+
+async function getTypesDb(){
+      return await Type.findAll()
 }
 
 async function api() {
       await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
-      .then(res => {pokemonsApi = res.data.results})
+      .then(res => {
+        pokemonsApi = res.data.results  
+      })
 }
 
 async function pokeDetail(param) {
@@ -86,7 +96,7 @@ const getPokemonQuery = (query) => {
 }
 
 const getTypes = () => {
-      return apiTypes() 
+       return getTypesDb()  
 }
 
 
@@ -97,8 +107,9 @@ module.exports = {
     getTypes
 }
 
+//async function apitest(){
+//console.log(await Pokemon.findAll())}
 
-
-
+//apitest()
 
 

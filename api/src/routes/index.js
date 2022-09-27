@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Pokemon } = require('../db');
+const { Pokemon , Type } = require('../db');
 const models = require('./models')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -43,7 +43,15 @@ router
 })
 
 .post('/pokemon', async (req,res) => {
-    const {id , name , height , weight , hp , attack , defense, speed} = req.body
+    const {id , name , height , weight , hp , attack , defense, speed, types, img} = req.body
+
+    let typesDb = []
+    
+    for(let i=0;i<=types.length-1;i++){
+        if(types[i] === ',') {}
+        else if(types[i+1] !== ',' && types[i+1]) {typesDb.push(types[i] + types[i+1]); i++}
+        else {typesDb.push(types[i])}
+    }
 
     try {
         const newPokemon = await Pokemon.create({
@@ -54,10 +62,12 @@ router
             hp,
             attack,
             defense,
-            speed
+            speed,
+            img
         })
+        newPokemon.setTypes(typesDb)
         res.status(201).json(newPokemon)
     } catch(error) {
-        res.status(404).send("There was a problem with the data")
+        res.status(404).json("There was a problem with the data")
     }
 })
