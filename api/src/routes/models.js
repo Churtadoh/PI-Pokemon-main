@@ -1,12 +1,11 @@
 'use strict'
 
 const axios = require('axios')
-const Promise = require('bluebird')
+const Promise = require('bluebird');
 const { Pokemon, Type } = require('../db');
 
-let pokemonsApi = []
-let urls = []
-let pokemons = []
+
+
 
 async function apiTypes() {
       const api = await axios.get('https://pokeapi.co/api/v2/type')
@@ -14,17 +13,19 @@ async function apiTypes() {
       await types.map(el => Type.create({name: el.name}))
 }
 
-apiTypes();
+//apiTypes();
 
 async function getTypesDb(){
       return await Type.findAll()
 }
 
 async function api() {
+      let pokemonsApi = []
       await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
       .then(res => {
         pokemonsApi = res.data.results  
       })
+      return pokemonsApi
 }
 
 async function pokeDetail(param) {
@@ -43,10 +44,12 @@ async function pokeDetail(param) {
     }   
 }
 
-const url= () => {
+const url= (pokemonsApi) => {
+    let urls = []
     for(let i=0;i<=pokemonsApi.length-1;i++){
         urls.push(`${pokemonsApi[i].url}`)
     }
+  return urls  
 }
 
 const promise = (urls) => {
@@ -61,7 +64,7 @@ const fetchData = (URL) => {
         return {
           id: response.data.id,
           name: response.data.name,
-          types: response.data.types,
+          types: response.data.types.map(el => el.type.name),
           img: response.data.sprites.front_default,
           attack: response.data.stats[1].base_stat
         };
@@ -71,20 +74,39 @@ const fetchData = (URL) => {
       });
   }
 
+async function pokemonsDb(){
+    let db = await Pokemon.findAll({
+    include: Type
+  })
+  let pokeDb = db.map(el => {
+    return {
+          id: el.dataValues.id,
+          name: el.dataValues.name,
+          types: el.dataValues.types.map(type => type.dataValues.name ),
+          img: el.dataValues.img,
+          attack: el.dataValues.attack
+    }
+  })
+  return pokeDb
+}   
+
 
 
 async function bundle() {
-    await api()
-    url()
-    promise(urls).then(resp=>{pokemons = resp}).catch(e=>{console.log(e)})
+    let pokemonsApi = await api()
+    let urls = url(pokemonsApi)
+    const a = promise(urls).then(resp=> resp).catch(e=>{console.log(e)})
+    return a
 }     
 
-bundle()
+//bundle()
 
 
 
-const getAllPokemon = () =>{  
-    return pokemons
+const getAllPokemon = async () =>{  
+     let pokeApi = await bundle()
+     let pokeDb = await pokemonsDb()
+    return [...pokeApi , ...pokeDb]
 }
 
 const getPokemonId = (param) =>{
@@ -107,9 +129,14 @@ module.exports = {
     getTypes
 }
 
-//async function apitest(){
-//console.log(await Pokemon.findAll())}
+/*async function apitest(){
+var a = await Pokemon.findAll({
+  include: Type
+})
 
-//apitest()
+console.log(a[1].dataValues.types[0].dataValues.name)
+}
+
+apitest()*/
 
 

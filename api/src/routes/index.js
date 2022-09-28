@@ -21,8 +21,9 @@ const {
 
 router
 
-.get('/home', (req,res)=>{
-    res.status(200).json(getAllPokemon())
+.get('/home',async (req,res)=>{
+    let a = await getAllPokemon()
+    res.status(200).json(a)
 })
 
 .get('/pokemon/:id',async (req,res)=>{
