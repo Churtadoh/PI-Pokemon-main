@@ -10,7 +10,7 @@ const Pokemon = (props) =>{
            </Link>
            <img src= {props.img} alt=''/>
            <h3>{props.id}</h3>
-           <h3>{props.types[0].type.name} </h3>
+           <h3>{props.types.toString()} </h3>
         </div>
     )
 }
