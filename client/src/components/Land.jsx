@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { initiatePage } from '../redux/actions';
+import s from './Land.module.css'
 
 
 const Land = (props) =>{
 
     return(
-        <div>
-        <h1>Landing page</h1> 
-        <Link to = '/home'><button onClick={props.initiatePage}>Begin</button></Link>
+        <div className={s.land}>
+        <h1 className={s.tittle}>Welcome to the pokemon App</h1> 
+        <Link to = '/home' className={s.link}><button className={s.button} onClick={props.initiatePage}>Begin</button></Link>
         </div>
     )
 }

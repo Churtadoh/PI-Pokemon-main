@@ -1,0 +1,39 @@
+.land {
+    background-color: rgb(0, 0, 0);
+    margin: auto 10px;
+    width: auto;
+    height: 625px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./81-812511_m.jpg');
+    background-size: 1112px 625px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tittle {
+    color: yellow;
+    font-size: 50px;
+    text-shadow: 3px 0px black ,-3px 0px black , 0px 3px black ,0px -3px black
+}
+
+.button {
+    background-color: blue;
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    font-size: 25px;
+    font-style: italic;
+}
+
+.link {
+    text-decoration: none;
+}

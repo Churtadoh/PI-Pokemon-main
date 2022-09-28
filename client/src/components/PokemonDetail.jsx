@@ -8,6 +8,16 @@ const PokemonDetail = ({match}) =>{
         <div>
         <h1>Name: {pokemon.name} </h1> 
         <img src={pokemon.img} alt=''/>
+        <h3>Id: {pokemon.id}</h3>
+        <h3>Types: {pokemon.types}</h3>
+        <span><h3>Height: {pokemon.height} Weight: {pokemon.weight}lbs</h3></span>
+        <ul>Stats:
+            <li>HP: {pokemon.hp}</li>
+            <li>ATTACK: {pokemon.attack}</li>
+            <li>DEFENSE: {pokemon.defense}</li>
+            <li>SPEED: {pokemon.speed}</li>
+        </ul>
+
         </div>
     )
 }

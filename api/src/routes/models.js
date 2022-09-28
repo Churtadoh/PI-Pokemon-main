@@ -33,7 +33,7 @@ async function pokeDetail(param) {
     return {
       name: poke.data.name.charAt(0).toUpperCase() + poke.data.name.slice(1),
       id: poke.data.id,
-      types: poke.data.types,
+      types: poke.data.types.map(el => el.type.name ),
       img: poke.data.sprites.other.dream_world.front_default,
       height: poke.data.height,
       weight: poke.data.weight,
@@ -88,7 +88,25 @@ async function pokemonsDb(){
     }
   })
   return pokeDb
-}   
+}
+
+async function pokemonDbPk(pk){
+  let poke = await Pokemon.findByPk(pk,{
+    include: Type
+  })
+  return {
+          id: poke.dataValues.id,
+          name: poke.dataValues.name,
+          types: poke.dataValues.types.map(type => type.dataValues.name ),
+          img: poke.dataValues.img,
+          attack: poke.dataValues.attack,
+          height: poke.dataValues.height,
+          weight: poke.dataValues.weight,
+          hp: poke.dataValues.hp,
+          defense: poke.dataValues.defense,
+          speed: poke.dataValues.speed
+  }
+}
 
 
 
@@ -106,15 +124,20 @@ async function bundle() {
 const getAllPokemon = async () =>{  
      let pokeApi = await bundle()
      let pokeDb = await pokemonsDb()
-    return [...pokeApi , ...pokeDb]
+     return [...pokeApi , ...pokeDb]
 }
 
 const getPokemonId = (param) =>{
+      if (param[0] === 'U'){
+         return pokemonDbPk(param)
+      }
       return pokeDetail(param)
 }
 
-const getPokemonQuery = (query) => {
-      return pokeDetail(query)
+const getPokemonQuery = async (query) => {
+      let res = await Pokemon.findOne({where: {name: query}})
+      if(res === null) {return pokeDetail(query)}
+      return pokemonDbPk(res.dataValues.id)
 }
 
 const getTypes = () => {
@@ -129,14 +152,14 @@ module.exports = {
     getTypes
 }
 
-/*async function apitest(){
-var a = await Pokemon.findAll({
+async function apitest(){
+var a = await Pokemon.findByPk('U1',{
   include: Type
 })
 
-console.log(a[1].dataValues.types[0].dataValues.name)
+console.log(a.dataValues.types[0].dataValues.name)
 }
 
-apitest()*/
+apitest()
 
 
