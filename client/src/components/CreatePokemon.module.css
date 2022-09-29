@@ -1,0 +1,63 @@
+.danger {
+    border-color: red;
+    color: darkred;
+}
+
+.general {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    background-color: rgb(135, 88, 155);
+    width: auto;
+    height: auto;
+}
+
+.create {
+    background-color: rgb(135, 88, 155); 
+    width: auto;
+    height: 50px;
+    margin:0px;
+    padding: 10px;
+}
+
+.types {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    font-size: large;
+    padding-right: 250px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    font-size: large;
+    padding-left: 250px;
+}
+
+.button {
+    font-style: italic;
+    font-size: large;
+    background-color: blue;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+    border-color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.p {
+    width: 300px;
+}
+
+.notice {
+    background-color: rgb(233, 185, 249);
+    border-radius: 5px;
+    margin-top: 10px;
+}
