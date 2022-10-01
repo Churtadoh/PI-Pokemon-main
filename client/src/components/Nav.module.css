@@ -1,0 +1,35 @@
+.Nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center; 
+    background-color: rgb(75, 73, 73);
+    height: 60px;
+    position: fixed;
+    width: 100%;
+}
+
+.links {
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}
+
+.button {
+    font-style: normal;
+    font-size: large;
+    background-color:rgb(255, 191, 0);
+    color: black;
+    margin: 5px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 250px;
+    padding: 5px;
+    margin: 10px;
+    border-color:  rgb(135, 88, 155);
+}

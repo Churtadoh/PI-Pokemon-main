@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { getAllPokemon } from '../redux/actions'
 import { useState } from 'react'
+import SideBar from './SideBar'
+import s from './Home.module.css'
 
 const Home = (props) =>{
 
@@ -37,12 +39,20 @@ const Home = (props) =>{
 
     return(
         <div>
-           <h1>Home</h1> 
-           <h2>Pokemon</h2>
-           <h3>Pagina: {currentPage}</h3>
-           <button onClick={prevHandler}>Prev</button>
-           <button onClick={nextHandler}>Next</button>
-           {items}
+           <h1 className={s.home}>Home</h1>
+           <div className={s.general}>
+           <div className={s.list}>
+              <h2>Pokemon</h2>
+              <h3>Pagina: {currentPage}</h3>
+              <div>
+                 <button className={s.button} onClick={prevHandler}>Prev</button>
+                 <button className={s.button} onClick={nextHandler}>Next</button>
+              </div>
+              {items}
+           </div>
+            
+           <SideBar/>
+           </div>
         </div>
     )
 }

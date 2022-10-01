@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { getPokemon } from "../redux/actions"
+import s from './Pokemon.module.css'
 
 const Pokemon = (props) =>{
     return(
-        <div>
-           <Link to = {'/pokemon/'+ props.id} onClick={() => props.getPokemon(props.id)}>
-                 <h1>{props.name.charAt(0).toUpperCase() + props.name.slice(1)}</h1>
+        <div className={s.general}>
+           <Link to = {'/pokemon/'+ props.id} onClick={() => props.getPokemon(props.id)} className={s.link}>
+                 <h1>{props.name}</h1>
            </Link>
-           <img src= {props.img} alt=''/>
-           <h3>{props.id}</h3>
-           <h3>{props.types.toString()} </h3>
+           <img src= {props.img} alt='' className={s.img}/>
+           <h3>Id : {props.id}</h3>
+           <h3>Type(s) : {props.types} </h3>
         </div>
     )
 }

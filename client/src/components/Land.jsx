@@ -8,7 +8,7 @@ const Land = (props) =>{
 
     return(
         <div className={s.land}>
-        <h1 className={s.tittle}>Welcome to the pokemon App</h1> 
+        <h1 className={s.tittle}>Welcome to the Pokemon App</h1> 
         <Link to = '/home' className={s.link}><button className={s.button} onClick={props.initiatePage}>Begin</button></Link>
         </div>
     )

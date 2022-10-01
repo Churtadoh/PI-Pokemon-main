@@ -3,6 +3,7 @@ import {useEffect} from 'react';
 import { getPokemonQuery } from '../redux/actions';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import s from './Nav.module.css'
 
 const Nav = (props) =>{
 
@@ -23,11 +24,13 @@ useEffect(()=>{if(inputSearch!==''){dispatch(getPokemonQuery(inputSearch))}
 },[inputSearch,dispatch])
 
 return(
-    <div>
-        <Link to = '/home'>Home</Link>
-        <Link to = '/pokemon-create'>Create Pokemon</Link>
-        <input id='input' value={input} onChange= {handleInputChange} placeholder='Search for pokemon by name or id'/>
-        <Link to = {`/pokemon?name=${input}`}><button type='submit' onClick= {handleInputSearch}>Search</button></Link>
+    <div className={s.Nav}>
+        <Link to = '/home' className={s.links}>Home</Link>
+        <Link to = '/pokemon-create' className={s.links}>Create Pokemon</Link>
+        <div>
+           <input id='input' className={s.bar} value={input} onChange= {handleInputChange} placeholder='Search for pokemon by name'/>
+           <Link to = {`/pokemon?name=${input}`}><button type='submit' className={s.button} onClick= {handleInputSearch}>Search</button></Link>
+        </div>
     </div> 
 )
 }

@@ -7,17 +7,26 @@ import CreatePokemon from './components/CreatePokemon';
 import PokemonDetail from './components/PokemonDetail';
 import { useSelector, connect} from "react-redux"
 import {useEffect} from "react"
-import { getAllPokemon } from './redux/actions';
+import { getAllPokemon , getTypes } from './redux/actions';
 import Pokemon from './components/Pokemon';
 
 function App(props) {
   const nav = useSelector(state => state.nav)
 
+  let save = useSelector(state => [...state.allPokemon])
+
+  let filter = useSelector(state => [...state.pokemonFilter])
+
   useEffect(()=> {
     props.getAllPokemon()
+    .then(props.getTypes())
   },[])
 
-  const arrayPokemon = props.allPokemon.map(el =>{
+  let current = []
+  if(filter.length===0){ current = [...save]}
+  else {current = [...filter]}
+
+  const arrayPokemon = current.map(el =>{
     return(<div key={el.id}>
         <Pokemon
         id = {el.id}
@@ -51,7 +60,8 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return{
-      getAllPokemon: () => dispatch(getAllPokemon())
+      getAllPokemon: () => dispatch(getAllPokemon()),
+      getTypes: () => dispatch(getTypes())
   }
 }
 

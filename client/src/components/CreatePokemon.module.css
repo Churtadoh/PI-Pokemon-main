@@ -8,7 +8,7 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
-    background-color: rgb(135, 88, 155);
+    background-color: white;
     width: auto;
     height: auto;
 }
@@ -19,6 +19,7 @@
     height: 50px;
     margin:0px;
     padding: 10px;
+    padding-top: 60px;
 }
 
 .types {
@@ -41,13 +42,13 @@
 }
 
 .button {
-    font-style: italic;
+    font-style: normal;
     font-size: large;
-    background-color: blue;
+    background-color: black;
     color: white;
     margin: 5px;
     border-radius: 5px;
-    border-color: white;
+    border-color: black;
     padding: 5px;
     cursor: pointer;
 }
@@ -57,7 +58,9 @@
 }
 
 .notice {
-    background-color: rgb(233, 185, 249);
+    background-color: rgb(135, 88, 155);
     border-radius: 5px;
+    padding: 0px 20px;
     margin-top: 10px;
+    border: 3px solid black;
 }

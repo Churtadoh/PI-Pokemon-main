@@ -1,16 +1,14 @@
 import { useState } from "react"
 import axios from "axios"
-import {useEffect} from "react"
 import { getAllPokemon, getTypes } from "../redux/actions"
-import { connect} from "react-redux"
+import { connect, useSelector} from "react-redux"
 import s from './CreatePokemon.module.css'
 
 const CreatePokemon = (props) =>{
-    useEffect(()=> {
-        props.getTypes()
-      },[])
 
-      const arrayTypes = props.types.map(el =>{
+    let type = useSelector(state => state.types)
+
+      const arrayTypes = type.map(el =>{
         return(<div key={el.id}>
             {`${el.id} : ${el.name}`}
             </div>)
@@ -69,7 +67,7 @@ const CreatePokemon = (props) =>{
 
     return(
         <div>
-        <h1 className={s.create}>Create your own pokemon</h1>
+        <h1 className={s.create}>Create your own Pokemon</h1>
         <div className={s.general}>   
        <form className={s.form} onSubmit={handleSubmit}>
           <label>Name: </label>
@@ -97,18 +95,18 @@ const CreatePokemon = (props) =>{
           className ={errors.id ? s.danger : ""}
           /><br/>
           {errors.types && <span className={s.danger}>{errors.types}</span>}
-          <button className={s.button} disabled={errors.id? "disabled": ""} type="submit">Create</button>
+          <button className={errors.id || errors.types? "disabled": s.button} disabled={errors.id || errors.types? "disabled": ""} type="submit">Create</button>
        </form> 
           <div className={s.types}>
             <h3>Possible Types</h3>
             <div className={s.types}>{arrayTypes}</div>
             <div className={s.notice}>
                 <h2>Notice!</h2>
-                <p className={s.p}>To choose the type of your pokemon 
-                    type the id into the input box, if
+                <p className={s.p}>To choose the type for your pokemon 
+                    write the id into the input box, if
                     you wish to choose more than one type
                     insert the different Id's separated by
-                    commas. e.g., ("1,15" for normal and ice)
+                    commas. e.g., (1,15 for normal and ice)
                 </p>    
             </div>
           </div>
