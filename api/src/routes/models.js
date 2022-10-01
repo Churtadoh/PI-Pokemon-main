@@ -13,7 +13,7 @@ async function apiTypes() {
       await types.map(el => Type.create({name: el.name}))
 }
 
-//apiTypes();
+apiTypes();
 
 async function getTypesDb(){
       return await Type.findAll()
@@ -21,7 +21,7 @@ async function getTypesDb(){
 
 async function api() {
       let pokemonsApi = []
-      await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
+      await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=13')
       .then(res => {
         pokemonsApi = res.data.results  
       })
@@ -33,7 +33,7 @@ async function pokeDetail(param) {
     return {
       name: poke.data.name.charAt(0).toUpperCase() + poke.data.name.slice(1),
       id: poke.data.id,
-      types: poke.data.types.map(el => el.type.name ),
+      types: poke.data.types.map(el => el.type.name ).toString(),
       img: poke.data.sprites.other.dream_world.front_default,
       height: poke.data.height,
       weight: poke.data.weight,
@@ -63,14 +63,20 @@ const fetchData = (URL) => {
       .then(function(response) {
         return {
           id: response.data.id,
-          name: response.data.name,
-          types: response.data.types.map(el => el.type.name),
+          name: response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1),
+          types: response.data.types.map(el => el.type.name).toString(),
           img: response.data.sprites.front_default,
           attack: response.data.stats[1].base_stat
         };
       })
       .catch(function(error) {
-        return { success: false };
+        return {
+          id: 0,
+          name: "Error",
+          types: "Error",
+          img: "Error",
+          attack: 0
+        };
       });
   }
 
@@ -82,7 +88,7 @@ async function pokemonsDb(){
     return {
           id: el.dataValues.id,
           name: el.dataValues.name,
-          types: el.dataValues.types.map(type => type.dataValues.name ),
+          types: el.dataValues.types.map(type => type.dataValues.name).toString(),
           img: el.dataValues.img,
           attack: el.dataValues.attack
     }
@@ -151,15 +157,3 @@ module.exports = {
     getPokemonQuery,
     getTypes
 }
-
-async function apitest(){
-var a = await Pokemon.findByPk('U1',{
-  include: Type
-})
-
-console.log(a.dataValues.types[0].dataValues.name)
-}
-
-apitest()
-
-

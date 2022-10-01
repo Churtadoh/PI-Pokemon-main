@@ -22,20 +22,33 @@ const {
 router
 
 .get('/home',async (req,res)=>{
+    try {
     let a = await getAllPokemon()
     res.status(200).json(a)
+    } catch {
+        res.status(404).json("There was a problem with the server")
+    }
+
 })
 
 .get('/pokemon/:id',async (req,res)=>{
     const {id} = req.params
-    const a = await getPokemonId(id)
-    res.status(200).json(a)
+    try {
+       const a = await getPokemonId(id)
+       res.status(200).json(a)
+    } catch {
+        res.status(404).json("There was a problem with the data")
+    }
 })
 
 .get('/pokemon', async (req,res)=>{
     const name = req.query.name
+    try {
     const a = await getPokemonQuery(name)
     res.status(200).json(a)
+    } catch {
+        res.status(404).json("There was a problem with the data")
+    }
 })
 
 .get('/types', async (req,res)=>{
@@ -47,12 +60,14 @@ router
     const {id , name , height , weight , hp , attack , defense, speed, types, img} = req.body
 
     let typesDb = []
+    let ready = []
     
     for(let i=0;i<=types.length-1;i++){
         if(types[i] === ',') {}
         else if(types[i+1] !== ',' && types[i+1]) {typesDb.push(types[i] + types[i+1]); i++}
         else {typesDb.push(types[i])}
     }
+    typesDb.forEach(el => {if(el<21){ready.push(el)}})
 
     try {
         const newPokemon = await Pokemon.create({
@@ -66,9 +81,9 @@ router
             speed,
             img
         })
-        newPokemon.setTypes(typesDb)
+        newPokemon.setTypes(ready)
         res.status(201).json(newPokemon)
     } catch(error) {
-        res.status(404).json("There was a problem with the data")
+        res.status(400).json({error :"There was a problem with the data"})
     }
 })
