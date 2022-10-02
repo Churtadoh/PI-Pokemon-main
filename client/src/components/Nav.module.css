@@ -25,6 +25,20 @@
     border-color: black;
     padding: 5px;
     cursor: pointer;
+    width: 90px;
+}
+
+.button1 {
+    font-style: normal;
+    font-size: large;
+    background-color: white;
+    color: black;
+    margin: 5px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 5px;
+    cursor: pointer;
+    width: 90px;
 }
 
 .bar {

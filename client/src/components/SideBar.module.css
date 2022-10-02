@@ -9,9 +9,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 560px;
+    height: 500px;
+    padding-bottom: 500px;
     overflow-x: hidden;
     padding-left: 10px;
+    padding-right: 15px;
     padding-top: 10px;
 }
 
@@ -31,6 +33,7 @@
     border-radius: 5px;
     border-color: black;
     cursor: pointer;
+    width: 65px;
 }
 
 .bar {
