@@ -4,16 +4,16 @@ const axios = require('axios')
 const Promise = require('bluebird');
 const { Pokemon, Type } = require('../db');
 
-
-
-
 async function apiTypes() {
-      const api = await axios.get('https://pokeapi.co/api/v2/type')
-      const types = api.data.results
-      await types.map(el => Type.create({name: el.name}))
+        const api = await axios.get('https://pokeapi.co/api/v2/type')
+        const typesDb = await Type.findAll()
+        const types = api.data.results
+        if(typesDb.length===0) {
+            await types.map(el => Type.create({name: el.name}))
+        }   
 }
 
-apiTypes();
+apiTypes()
 
 async function getTypesDb(){
       return await Type.findAll()
@@ -21,7 +21,7 @@ async function getTypesDb(){
 
 async function api() {
       let pokemonsApi = []
-      await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=13')
+      await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40')
       .then(res => {
         pokemonsApi = res.data.results  
       })
@@ -78,7 +78,7 @@ const fetchData = (URL) => {
           attack: 0
         };
       });
-  }
+}
 
 async function pokemonsDb(){
     let db = await Pokemon.findAll({
@@ -103,7 +103,7 @@ async function pokemonDbPk(pk){
   return {
           id: poke.dataValues.id,
           name: poke.dataValues.name,
-          types: poke.dataValues.types.map(type => type.dataValues.name ),
+          types: poke.dataValues.types.map(type => type.dataValues.name ).toString(),
           img: poke.dataValues.img,
           attack: poke.dataValues.attack,
           height: poke.dataValues.height,
@@ -114,18 +114,12 @@ async function pokemonDbPk(pk){
   }
 }
 
-
-
 async function bundle() {
     let pokemonsApi = await api()
     let urls = url(pokemonsApi)
     const a = promise(urls).then(resp=> resp).catch(e=>{console.log(e)})
     return a
 }     
-
-//bundle()
-
-
 
 const getAllPokemon = async () =>{  
      let pokeApi = await bundle()
@@ -150,10 +144,10 @@ const getTypes = () => {
        return getTypesDb()  
 }
 
-
 module.exports = {
     getAllPokemon,
     getPokemonId,
     getPokemonQuery,
-    getTypes
+    getTypes,
+    apiTypes
 }
