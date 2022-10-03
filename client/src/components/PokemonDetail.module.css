@@ -46,3 +46,8 @@
 .ul {
     margin: 0px;
 }
+
+.img {
+    width: 400px;
+    max-height: 400px;
+}

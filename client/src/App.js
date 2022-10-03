@@ -33,6 +33,7 @@ function App(props) {
         name = {el.name}
         types = {el.types}
         img = {el.img}
+        attack = {el.attack}
         />
         </div>)
   })

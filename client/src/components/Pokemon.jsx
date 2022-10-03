@@ -10,8 +10,9 @@ const Pokemon = (props) =>{
                  <h1>{props.name}</h1>
            </Link>
            <img src= {props.img} alt='Not available' className={s.img}/>
-           <h3>Id : {props.id}</h3>
-           <h3>Type(s) : {props.types} </h3>
+           <h3 className={s.h3}>Id : {props.id}</h3>
+           <h3 className={s.h3}>Attack: {props.attack}</h3>
+           <h3 className={s.h3}>Type(s) : {props.types} </h3>
         </div>
     )
 }

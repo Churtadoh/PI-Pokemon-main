@@ -1,22 +1,22 @@
 .land {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(49, 46, 51);
     margin: auto 10px;
     width: auto;
     height: 625px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-image: url('./81-812511_m.jpg');
-    background-size: 1112px 625px;
+    background-image: url('https://64.media.tumblr.com/bb173f66478f48360b2b8abe172f5590/33dec1dc514fcf67-2a/s1280x1920/39222390051202f7356a6d49b6fff5d30ecbbd4e.gif');
+    background-size: 1500px 625px;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .tittle {
-    color: yellow;
+    color: black;
     font-size: 50px;
-    text-shadow: 3px 0px black ,-3px 0px black , 0px 3px black ,0px -3px black
+    text-shadow: 3px 0px white ,-3px 0px white , 0px 3px white ,0px -3px white;
 }
 
 .button {
@@ -32,6 +32,7 @@
     width: 100px;
     font-size: 25px;
     font-style: italic;
+    margin-bottom: 10px;
 }
 
 .link {

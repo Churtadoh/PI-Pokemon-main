@@ -53,7 +53,7 @@ const Home = (props) =>{
 
     return(
         <div>
-           <h1 className={s.home}>Home</h1>
+           <h1 className={s.home}>Home: Pokemon</h1>
            <div className={s.general}>
               <div className={s.list}>
                 <h3>Pagina: {currentPage} de {totalPages}</h3>
