@@ -9,7 +9,7 @@ const Pokemon = (props) =>{
            <Link to = {'/pokemon/'+ props.id} onClick={() => props.getPokemon(props.id)} className={s.link}>
                  <h1>{props.name}</h1>
            </Link>
-           <img src= {props.img} alt='No image available' className={s.img}/>
+           <img src= {props.img} alt='Not available' className={s.img}/>
            <h3>Id : {props.id}</h3>
            <h3>Type(s) : {props.types} </h3>
         </div>

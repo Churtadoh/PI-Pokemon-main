@@ -1,5 +1,5 @@
 import { useState} from "react"
-import {  useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector} from "react-redux"
 import { getAllPokemon} from "../redux/actions"
 import s from './SideBar.module.css'
 
@@ -82,49 +82,42 @@ const SideBar = () => {
             current = current.sort((a,b) => b.attack - a.attack)
             dispatch(getAllPokemon(current)) 
         }  
-
     }
 
-    
-
-
-
-    return (<div className={s.general}>
+    return (
+    <div className={s.general}>
         <h3>Sort by:</h3>
-        
         <input className={s.button} type="button" name="Reset" value="Reset" onClick={reset}/>
         <div className={s.list}>
-        <div>
-          <input className={s.button} type="button" name="apiPokemon" value ="Api" onClick={handleInputChange}/>-
-          <label>Only Api Pokemon</label>
-        </div>
-        <div>
-          <input className={s.button} type="button" name="userPokemon" value ="User" onClick={handleInputChange}/>- 
-          <label>Only User Pokemon</label><br/>
-        </div>  
-        <div>
-          <input className={s.button} type="button" name="AtoZ" value ="A-Z" onClick={handleInputChange}/>-
-          <label>Alphabetical Order</label><br/>
-        </div>
-        <div> 
-          <input className={s.button} type="button" name="ZtoA" value ="Z-A" onClick={handleInputChange}/>-
-          <label>Alphabetical Order Z-A</label><br/>
-        </div>
-        <div>
-          <input className={s.button} type="button" name="attackLG" value ="Atk L-G" onClick={handleInputChange}/>-
-          <label>Attack lowest to greatest</label><br/>
-        </div>
-        <div> 
-          <input className={s.button} type="button" name="attackGL" value ="Atk G-L" onClick={handleInputChange}/>-
-          <label>Attack greatest to lowest</label><br/>
-        </div>
+          <div>
+            <input className={s.button} type="button" name="apiPokemon" value ="Api" onClick={handleInputChange}/>-
+            <label>Only Api Pokemon</label>
+          </div>
+          <div>
+            <input className={s.button} type="button" name="userPokemon" value ="User" onClick={handleInputChange}/>- 
+            <label>Only User Pokemon</label><br/>
+          </div>  
+          <div>
+            <input className={s.button} type="button" name="AtoZ" value ="A-Z" onClick={handleInputChange}/>-
+            <label>Alphabetical Order</label><br/>
+          </div>
+          <div> 
+            <input className={s.button} type="button" name="ZtoA" value ="Z-A" onClick={handleInputChange}/>-
+            <label>Alphabetical Order Z-A</label><br/>
+          </div>
+          <div>
+            <input className={s.button} type="button" name="attackLG" value ="Atk L-G" onClick={handleInputChange}/>-
+            <label>Attack lowest to greatest</label><br/>
+          </div>
+          <div> 
+            <input className={s.button} type="button" name="attackGL" value ="Atk G-L" onClick={handleInputChange}/>-
+            <label>Attack greatest to lowest</label><br/>
+          </div>
         </div>
         <h3>Filter by type:</h3>
         <input className={s.bar} type="input" name="type" value ={type} onChange={handleTypeChange} placeholder="write type..."/>
         <input className={s.button} type="button" name="type" value ="Filter" onClick={handleTypeFilter}/>
-        
-
-        </div>
+    </div>
     )
 
 }

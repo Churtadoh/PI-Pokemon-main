@@ -1,17 +1,16 @@
-import './App.css';
-import { Route, Switch, useLocation} from "react-router-dom"
+import { Route, useLocation} from "react-router-dom"
 import Land from "./components/Land"
 import Nav from "./components/Nav"
 import Home from "./components/Home"
 import CreatePokemon from './components/CreatePokemon';
 import PokemonDetail from './components/PokemonDetail';
+import Pokemon from './components/Pokemon';
 import { useSelector, connect} from "react-redux"
 import {useEffect} from "react"
 import { getAllPokemon , getTypes } from './redux/actions';
-import Pokemon from './components/Pokemon';
+
 
 function App(props) {
-  const nav = useSelector(state => state.nav)
   const {pathname} = useLocation()
 
   let save = useSelector(state => [...state.allPokemon])
@@ -19,8 +18,8 @@ function App(props) {
   let filter = useSelector(state => [...state.pokemonFilter])
 
   useEffect(()=> {
-    props.getAllPokemon()
-    .then(props.getTypes())
+      props.getAllPokemon()
+      .then(props.getTypes())
   },[])
 
   let current = []
@@ -41,21 +40,13 @@ function App(props) {
   return (
     <div className="App">
       <>
-      <Route exact path = '/' component = {()=>(<Land/>)}/>
-      {pathname !== '/' && <Nav/>}
-      <Route>
-      <Route exact path = '/home' component = {()=>(<Home arrayPokemon={arrayPokemon}/>)}/>
-      <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
-      <Route exact path = {'/pokemon/:id'} component = {() => <PokemonDetail/>}/>
-      <Route exact path = '/pokemon' component={() => <PokemonDetail/>}/>
-      </Route>
-      <Switch/>
-
-     
-   
-  
+         <Route exact path = '/' component = {()=>(<Land/>)}/>
+         {pathname !== '/' && <Nav/>}
+         <Route exact path = '/home' component = {()=>(<Home arrayPokemon={arrayPokemon}/>)}/>
+         <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
+         <Route exact path = {'/pokemon/:id'} component = {() => <PokemonDetail/>}/>
+         <Route exact path = '/pokemon' component={() => <PokemonDetail/>}/>
       </>
-      
     </div>
   );
 }

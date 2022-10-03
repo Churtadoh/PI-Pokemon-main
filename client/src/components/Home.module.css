@@ -5,12 +5,19 @@
     align-items: flex-start;
 }
 
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .list {
-    background-color: grey;
     width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 250px;
 }
 
 .home {
@@ -22,6 +29,9 @@
     padding-top: 60px;
     width: 100%;
     top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button {
@@ -34,4 +44,9 @@
     border-color: black;
     padding: 5px;
     cursor: pointer;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
 }

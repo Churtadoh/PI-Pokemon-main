@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useSelector, connect , useDispatch} from 'react-redux';
+import { connect} from 'react-redux';
 import { initiatePage } from '../redux/actions';
 import s from './Land.module.css'
-import { useEffect } from 'react';
-
-
-
 
 const Land = (props) =>{
-
     return(
         <div className={s.land}>
         <h1 className={s.tittle}>Welcome to the Pokemon App</h1> 
@@ -23,4 +18,4 @@ export const mapDispatchToProps = (dispatch) => {
         }
 }
 
-    export default connect(null,mapDispatchToProps)(Land)
+export default connect(null,mapDispatchToProps)(Land)

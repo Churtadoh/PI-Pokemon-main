@@ -3,17 +3,18 @@ import axios from "axios"
 import { getAllPokemon, getTypes } from "../redux/actions"
 import { connect, useSelector} from "react-redux"
 import s from './CreatePokemon.module.css'
-import Nav from "./Nav"
 
 const CreatePokemon = (props) =>{
 
     let type = useSelector(state => state.types)
 
       const arrayTypes = type.map(el =>{
-        return(<div key={el.id}>
-            {`${el.id} : ${el.name}`}
-            </div>)
-      })
+            return(
+                <div key={el.id}>
+                {`${el.id} : ${el.name}`}
+                </div>
+            )}
+        );
     
     const initialInput =  {
         name: '',
@@ -59,67 +60,61 @@ const CreatePokemon = (props) =>{
     const handleSubmit = (e) =>{
         e.preventDefault();
         axios.post("http://localhost:3001/pokemon", input)
-        .then(res => {console.log(res)
-        setInput(initialInput)
-        props.getAllPokemon()
+        .then(res => {
+            console.log(res)
+            setInput(initialInput)
+            props.getAllPokemon()
         })
-    }
+    };
 
 
     return(
         <div>
-        <h1 className={s.create}>Create your own Pokemon</h1>
-        <div className={s.general}>   
-       <form className={s.form} onSubmit={handleSubmit}>
-          <label>Name: </label>
-          <input name = 'name' value = {input.name} onChange = {handleInputChange}/><br/>
-          <label>Id: </label>
-          <input name = 'id' value = {input.id} onChange = {handleInputChange} 
-          className ={errors.id ? s.danger : ""}/><br/>
-          {errors.id && <span className={s.danger}>{errors.id}</span>}
-          <label>Height: </label>
-          <input name = 'height' value = {input.height} onChange = {handleInputChange}/><br/>
-          <label>Weight: </label>
-          <input name = 'weight' value = {input.weight} onChange = {handleInputChange}/><br/>
-          <label>Hp: </label>
-          <input name = 'hp' value = {input.hp} onChange = {handleInputChange}/><br/>
-          <label>Attack: </label>
-          <input name = 'attack' value = {input.attack} onChange = {handleInputChange}/><br/>
-          <label>Defense: </label>
-          <input name = 'defense' value = {input.defense} onChange = {handleInputChange}/><br/>
-          <label>Speed: </label>
-          <input name = 'speed' value = {input.speed} onChange = {handleInputChange}/><br/>
-          <label>Image URL: </label>
-          <input name = 'img' value = {input.img} onChange = {handleInputChange}/><br/>
-          <label>Types: </label>
-          <input name = 'types' value = {input.types} onChange = {handleInputChange}
-          className ={errors.id ? s.danger : ""}
-          /><br/>
-          {errors.types && <span className={s.danger}>{errors.types}</span>}
-          <button className={errors.id || errors.types? "disabled": s.button} disabled={errors.id || errors.types? "disabled": ""} type="submit">Create</button>
-       </form> 
-          <div className={s.types}>
+           <h1 className={s.create}>Create your own Pokemon</h1>
+           <div className={s.general}>   
+            <form className={s.form} onSubmit={handleSubmit}>
+              <label>Name: </label>
+              <input name = 'name' value = {input.name} onChange = {handleInputChange}/><br/>
+              <label>Id: </label>
+              <input name = 'id' value = {input.id} onChange = {handleInputChange} 
+                 className ={errors.id ? s.danger : ""}/><br/>
+              {errors.id && <span className={s.danger}>{errors.id}</span>}
+              <label>Height: </label>
+              <input name = 'height' value = {input.height} onChange = {handleInputChange}/><br/>
+              <label>Weight: </label>
+              <input name = 'weight' value = {input.weight} onChange = {handleInputChange}/><br/>
+              <label>Hp: </label>
+              <input name = 'hp' value = {input.hp} onChange = {handleInputChange}/><br/>
+              <label>Attack: </label>
+              <input name = 'attack' value = {input.attack} onChange = {handleInputChange}/><br/>
+              <label>Defense: </label>
+              <input name = 'defense' value = {input.defense} onChange = {handleInputChange}/><br/>
+              <label>Speed: </label>
+              <input name = 'speed' value = {input.speed} onChange = {handleInputChange}/><br/>
+              <label>Image URL: </label>
+              <input name = 'img' value = {input.img} onChange = {handleInputChange}/><br/>
+              <label>Types: </label>
+              <input name = 'types' value = {input.types} onChange = {handleInputChange}
+                 className ={errors.id ? s.danger : ""}/><br/>
+              {errors.types && <span className={s.danger}>{errors.types}</span>}
+              <button className={errors.id || errors.types? "disabled": s.button} disabled={errors.id || errors.types? "disabled": ""} type="submit">Create</button>
+            </form> 
+            <div className={s.types}>
             <h3>Possible Types</h3>
-            <div className={s.types}>{arrayTypes}</div>
-            <div className={s.notice}>
-                <h2>Notice!</h2>
-                <p className={s.p}>To choose the type for your pokemon 
+             <div className={s.types}>{arrayTypes}</div>
+               <div className={s.notice}>
+                 <h2>Notice!</h2>
+                 <p className={s.p}>To choose the type for your pokemon 
                     write the id into the input box, if
                     you wish to choose more than one type
                     insert the different Id's separated by
                     commas. e.g., (1,15 for normal and ice)
-                </p>    
+                 </p>    
+               </div>
+             </div>
             </div>
-          </div>
-       </div>
        </div>
     )
-}
-
-export const mapStateToProps = (state) => {
-    return{
-        types: state.types
-    }
 };
 
 export const mapDispatchToProps = (dispatch) => {
@@ -129,4 +124,4 @@ export const mapDispatchToProps = (dispatch) => {
     }
   }
   
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePokemon)
+export default connect(null, mapDispatchToProps)(CreatePokemon)
