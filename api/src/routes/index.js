@@ -1,14 +1,8 @@
 const { Router } = require('express');
-const { Pokemon , Type } = require('../db');
+const { Pokemon } = require('../db');
 const models = require('./models')
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
 
 const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 
 module.exports = router;
 
@@ -47,7 +41,7 @@ router
     const a = await getPokemonQuery(name)
     res.status(200).json(a)
     } catch {
-        res.status(404).json("There was a problem with the data")
+        res.status(404).json("Pokemon not found or doesn't exist")
     }
 })
 
