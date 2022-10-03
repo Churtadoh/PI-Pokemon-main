@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import s from "./PokemonDetail.module.css"
+import Nav from "./Nav"
 
 
 const PokemonDetail = () =>{
@@ -7,10 +8,10 @@ const PokemonDetail = () =>{
 
     return(
         <div >
-          <h1 className={s.name}>Name: {pokemon.name} </h1>
+          <h1 className={s.name}>Name: {pokemon.name? pokemon.name: "Not found"} </h1>
           <div className={s.general}>
           <div> 
-            <img src={pokemon.img} alt='' className={s.img}/>
+            <img src={pokemon.img} alt='No image available' className={s.img}/>
           </div>
           <div >
             <h3>Id: {pokemon.id}</h3>

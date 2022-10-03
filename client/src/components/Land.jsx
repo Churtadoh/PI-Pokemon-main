@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
-import { connect} from 'react-redux';
+import { useSelector, connect , useDispatch} from 'react-redux';
 import { initiatePage } from '../redux/actions';
 import s from './Land.module.css'
+import { useEffect } from 'react';
+
+
 
 
 const Land = (props) =>{

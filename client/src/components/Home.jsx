@@ -4,6 +4,7 @@ import { getAllPokemon } from '../redux/actions'
 import { useState } from 'react'
 import SideBar from './SideBar'
 import s from './Home.module.css'
+import Nav from "./Nav"
 
 const Home = (props) =>{
 

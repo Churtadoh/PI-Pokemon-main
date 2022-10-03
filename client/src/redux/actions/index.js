@@ -40,7 +40,7 @@ export const getPokemonQuery = (name) => dispatch => {
 }
 
 export const initiatePage = () => {
-  var a = true
+  var a = false
   return{
     type: INITIATE_PAGE,
     payload: a

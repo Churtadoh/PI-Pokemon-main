@@ -3,6 +3,7 @@ import axios from "axios"
 import { getAllPokemon, getTypes } from "../redux/actions"
 import { connect, useSelector} from "react-redux"
 import s from './CreatePokemon.module.css'
+import Nav from "./Nav"
 
 const CreatePokemon = (props) =>{
 

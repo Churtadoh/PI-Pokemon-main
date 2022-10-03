@@ -1,5 +1,5 @@
 import './App.css';
-import { Route} from "react-router-dom"
+import { Route, Switch, useLocation} from "react-router-dom"
 import Land from "./components/Land"
 import Nav from "./components/Nav"
 import Home from "./components/Home"
@@ -12,6 +12,7 @@ import Pokemon from './components/Pokemon';
 
 function App(props) {
   const nav = useSelector(state => state.nav)
+  const {pathname} = useLocation()
 
   let save = useSelector(state => [...state.allPokemon])
 
@@ -41,22 +42,23 @@ function App(props) {
     <div className="App">
       <>
       <Route exact path = '/' component = {()=>(<Land/>)}/>
-      {nav && <Nav onSearch={(input) => alert(input)}/>}
+      {pathname !== '/' && <Nav/>}
+      <Route>
       <Route exact path = '/home' component = {()=>(<Home arrayPokemon={arrayPokemon}/>)}/>
       <Route exact path = '/pokemon-create' component = {()=>(<CreatePokemon/>)}/>
       <Route exact path = {'/pokemon/:id'} component = {() => <PokemonDetail/>}/>
       <Route exact path = '/pokemon' component={() => <PokemonDetail/>}/>
+      </Route>
+      <Switch/>
+
+     
+   
+  
       </>
       
     </div>
   );
 }
-
-export const mapStateToProps = (state) => {
-  return {
-      allPokemon: state.allPokemon
-  }
-};
 
 export const mapDispatchToProps = (dispatch) => {
   return{
@@ -65,5 +67,5 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)
 

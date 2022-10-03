@@ -4,7 +4,7 @@ const initialState = {
     allPokemon: [],
     pokemonFilter: [],
     pokemon: {},
-    nav: false,
+    nav: true,
     types: []
 }
 
