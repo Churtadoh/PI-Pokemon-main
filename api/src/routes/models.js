@@ -19,7 +19,8 @@ const getPokemonId = (param) =>{
 
 const getPokemonQuery = async (query) => {
    let res = await Pokemon.findOne({where: {name: query}})
-   if(res === null) {return pokeDetail(query)}
+   let name = query.toLowerCase()
+   if(res === null) {return pokeDetail(name)}
    return pokemonDbPk(res.dataValues.id)
 }
 
@@ -42,7 +43,7 @@ async function bundle() {
 }    
 
 async function api() {
-  let res = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=25')
+  let res = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40')
   return res.data.results 
 }
 
@@ -71,7 +72,7 @@ const fetchData = (URL) => {
         attack: res.data.stats[1].base_stat
       };
     })
-    .catch((e) => {
+    .catch(() => {
       return {
         id: 0,
         name: "Error",

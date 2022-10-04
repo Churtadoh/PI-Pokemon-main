@@ -16,17 +16,16 @@ module.exports = (sequelize) => {
     },
     height: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     weight: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     hp: {
       type: DataTypes.INTEGER
     },
     attack: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     defense: {
       type: DataTypes.INTEGER
