@@ -1,10 +1,9 @@
-import { GET_ALL_POKEMON , GET_POKEMON, GET_POKEMON_QUERY, INITIATE_PAGE, GET_TYPES, POKEMON_FILTER } from "../actions";
+import { GET_ALL_POKEMON , GET_POKEMON, GET_POKEMON_QUERY, GET_TYPES, POKEMON_FILTER } from "../actions";
 
 const initialState = {
     allPokemon: [],
     pokemonFilter: [],
     pokemon: {},
-    nav: true,
     types: []
 }
 
@@ -34,11 +33,6 @@ const rootReducer = (state = initialState , action) => {
             return{
                 ...state,
                 types: action.payload
-            }
-        case INITIATE_PAGE:
-            return{
-                ...state,
-                nav : action.payload
             }
         default:
             return state    

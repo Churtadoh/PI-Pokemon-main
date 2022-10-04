@@ -2,7 +2,6 @@ export const GET_ALL_POKEMON = "GET_ALL_POKEMON"
 export const POKEMON_FILTER = "POKEMON_FILTER"
 export const GET_POKEMON = "GET_POKEMON"
 export const GET_POKEMON_QUERY = "GET_POKEMON_QUERY"
-export const INITIATE_PAGE = "INITIATE_PAGE"
 export const GET_TYPES = "GET_TYPES"
 
 export const getAllPokemon = (a) => dispatch => {
@@ -37,12 +36,4 @@ export const getPokemonQuery = (name) => dispatch => {
           .then(obj => {
             dispatch({ type: GET_POKEMON, payload: obj });
           });
-}
-
-export const initiatePage = () => {
-  var a = false
-  return{
-    type: INITIATE_PAGE,
-    payload: a
-  }
 }

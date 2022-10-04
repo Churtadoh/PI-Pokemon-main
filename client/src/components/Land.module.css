@@ -35,6 +35,10 @@
     margin-bottom: 10px;
 }
 
+.button:hover {
+    background-color: rgb(63, 63, 63);
+}
+
 .link {
     text-decoration: none;
 }

@@ -44,6 +44,9 @@ const CreatePokemon = (props) =>{
 
     function validate(input) {
         let errors = {};
+        if(!input.name) {
+            errors.name = "Name is required"
+        }
         if(!input.id)  {
             errors.id = "Id is required"
         } else if(!/^U+(?=.*[0-9])/.test(input.id)) {
@@ -51,8 +54,12 @@ const CreatePokemon = (props) =>{
         }
         if(!input.types) {
             errors.types = "Type is required"
-        } else if(!/(?=.*[0-9])/.test(input.types)){
-            errors.types = "Types must be a number or series of numbers"
+        } else if(/([2-9][1-9999999]+)/.test(input.types)){
+            errors.types = "Types must be a number or series of numbers lower than 20"
+        } else if(/[A-Za-z]/.test(input.types)){
+            errors.types = "Types must be a number or series of numbers lower than 20"
+        } else if(!/(^[0-9])/.test(input.types)){
+            errors.types = "Types must be a number or series of numbers lower than 20"
         }
         return errors
     }
@@ -65,6 +72,7 @@ const CreatePokemon = (props) =>{
             setInput(initialInput)
             props.getAllPokemon()
         })
+        .catch(()=> alert('there was a problem with the data'))
     };
 
 
@@ -74,7 +82,9 @@ const CreatePokemon = (props) =>{
            <div className={s.general}>   
             <form className={s.form} onSubmit={handleSubmit}>
               <label>Name: </label>
-              <input name = 'name' value = {input.name} onChange = {handleInputChange}/><br/>
+              <input name = 'name' value = {input.name} onChange = {handleInputChange} 
+                 className ={errors.name ? s.danger : ""}/><br/>
+               {errors.name && <span className={s.danger}>{errors.name}</span>}  
               <label>Id: </label>
               <input name = 'id' value = {input.id} onChange = {handleInputChange} 
                  className ={errors.id ? s.danger : ""}/><br/>
