@@ -69,7 +69,8 @@ const fetchData = (URL) => {
         name: res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1),
         types: res.data.types.map(el => el.type.name).toString(),
         img: res.data.sprites.front_default,
-        attack: res.data.stats[1].base_stat
+        attack: res.data.stats[1].base_stat,
+        speed : res.data.stats[5].base_stat 
       };
     })
     .catch(() => {
@@ -127,8 +128,8 @@ async function pokeDetail(param) {
       attack: poke.data.stats[1].base_stat,
       defense: poke.data.stats[2].base_stat,
       speed: poke.data.stats[5].base_stat    
-    }   
-}
+    }  
+  }
 
 async function pokemonDbPk(pk){
   let poke = await Pokemon.findByPk(pk,{
