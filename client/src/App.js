@@ -34,6 +34,7 @@ function App(props) {
         types = {el.types}
         img = {el.img}
         attack = {el.attack}
+        speed = {el.speed}
         />
         </div>)
   })

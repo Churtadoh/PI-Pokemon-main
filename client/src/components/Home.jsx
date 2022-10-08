@@ -2,8 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import SideBar from './SideBar'
 import s from './Home.module.css'
+import { useSelector } from 'react-redux'
+import Loading from './Loading'
 
 const Home = (props) =>{
+
+    const loading = useSelector(state => state.isLoading)
 
     const arrayPokemon = props.arrayPokemon
 
@@ -51,7 +55,7 @@ const Home = (props) =>{
       matrix.push(<div key={i} className={s.grid}>{row}</div>)
     }
 
-    return(
+    return(loading? <Loading/> :
         <div>
            <h1 className={s.home}>Home: Pokemon</h1>
            <div className={s.general}>

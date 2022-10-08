@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux"
 import s from "./PokemonDetail.module.css"
+import Loading from "./Loading"
 
 const PokemonDetail = () =>{
     const pokemon = useSelector(state => state.pokemon)
+    const loading = useSelector(state => state.isLoading)
 
-    return(
+    return(loading? <Loading/> :
         <div >
           <h1 className={s.name}>Name: {pokemon.name? pokemon.name: "Not found"} </h1>
           <div className={s.general}>
